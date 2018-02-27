@@ -1,0 +1,16 @@
+{
+  "name": "practice-1",
+  "version": "1.0.0",
+  "description": "NodeJS Dersleri 15. Ders Videosuna Kadar Gorduklerim",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./App.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "nodemon": "^1.15.1"
+  }
+}
