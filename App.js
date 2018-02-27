@@ -1,12 +1,14 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
 var LoginRouter = require('./src/router/Login');
 var HomeRouter = require('./src/router/Home');
 var MainRouter = require('./src/router/Main');
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use('/', MainRouter);
 app.use('/home', HomeRouter);
 app.use('/login', LoginRouter);

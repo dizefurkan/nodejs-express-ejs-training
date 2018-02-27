@@ -1,5 +1,8 @@
-var path = require('path');
+var express = require('express');
+var router = express.Router();
+var controller = require('../controller/Login.js');
 
-module.exports = function(req, res) {
-    res.sendFile(path.join(__dirname, '../pages/Login.html'));
-};
+router.get('/', controller.index);
+router.post('/', controller.submit);
+
+module.exports = router;
