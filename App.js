@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './src/views/pages'));
+app.set('views', path.join(__dirname, './public/views/pages'));
 app.use(ejsLayout);
 Router(app);
 

@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <% include ./head %>
-    <link rel="stylesheet" href="/public/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/plugins/font-awesome-5/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="/public/css/index.css">
-    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <title>
+        <%
+            if (locals.pageTitle){%>
+                <%= pageTitle %><%
+            }
+            else { %>NodeJS<% }
+        %>
+    </title>
+    <% include ../partials/links %>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <% include navbar %>
+                <% include ../partials/navbar %>
             </div>
         </div>
         <hr />
-        <div class="row">
+        <div class="section row">
             <div class="col-xs-12">
                 <%- body %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <% include ../partials/footer %>
             </div>
         </div>
     </div>

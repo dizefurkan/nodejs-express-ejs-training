@@ -1,5 +1,7 @@
 var path = require('path');
 
 module.exports.index = function(req, res) {
-    res.render('Main');
+    res.render('Main', {
+        pageTitle: 'Main'
+    });
 };

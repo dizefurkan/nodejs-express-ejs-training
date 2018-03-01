@@ -23,3 +23,7 @@
     text-transform: uppercase;
     font-family: 'Anton', sans-serif;
 }
+
+.section {
+    height: 100vh;
+}

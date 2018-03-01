@@ -2,7 +2,9 @@ var path = require('path');
 var User = require('../models/Users');
 
 module.exports.index = function(req, res) {
-    res.render('Register');
+    res.render('Register', {
+        pageTitle: 'Register'
+    });
 };
 
 module.exports.submit = function(req, res) {
