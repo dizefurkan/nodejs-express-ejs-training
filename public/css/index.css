@@ -2,3 +2,24 @@
     text-align: center;
     color: red;
 }
+
+.navbarList {
+    position: relative;
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.navbarList li {
+    color: #333 !important;
+    float: left;
+    margin-right: 10px;
+    font-size: 18px;
+}
+.text {
+    text-align: center;
+    font-size: 46px;
+    text-transform: uppercase;
+    font-family: 'Anton', sans-serif;
+}
