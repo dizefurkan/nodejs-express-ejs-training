@@ -14,6 +14,8 @@ app.set('views', path.join(__dirname, './public/views/pages'));
 app.use(ejsLayout);
 Router(app);
 
-app.listen(3000, function() {
-    console.log('Server running at 3000');
+var server = app.listen(80, '127.0.0.1', function() {
+    var address = server.address().address;
+    var port = server.address().port;
+    console.log('Server running at http://%s:%s', address, port);
 });

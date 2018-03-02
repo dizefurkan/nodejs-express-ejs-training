@@ -1,4 +1,3 @@
-var path = require('path');
 var User = require('../models/Users');
 
 module.exports.index = function(req, res) {
@@ -17,13 +16,16 @@ module.exports.submit = function(req, res) {
         });
         
         userRegister.save(function(err) {
-            if (err)
+            if (err) {
                 console.log('Hata var', err);
-            else
+            }
+            else {
                 console.log('Register Successful');
+                res.redirect('/userlist');
+            }
         });
     } else {
         console.log('req.body is empty');
+        res.render('Register');
     }
-    res.render('Register');
 };

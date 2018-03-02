@@ -1,0 +1,26 @@
+<h1>Hello Team, Here is the UserList</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name Surname</th>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%
+        for(var i = 0; i < data.length; i++) {
+            %>
+            <tr class="">
+                <td><%= i+1 %></td>
+                <td><%= (data[i].name) %> <%= (data[i].surname) %></td>
+                <td><%= (data[i].username) %></td>
+                <td><%= (data[i].password) %></td>
+                <td><a href="/userlist/delete/<%=data[i].username%>">Sil</a></td>
+            </tr>
+            <%
+        }
+        %>
+    </tbody>
+</table>
