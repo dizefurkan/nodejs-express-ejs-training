@@ -73,3 +73,7 @@ module.exports.postUpdate = function(req, res) {
         }
     })
 };
+
+module.exports.redirecttoindex = function(req, res) {
+    res.redirect('/userlist');
+};
