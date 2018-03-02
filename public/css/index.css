@@ -27,3 +27,33 @@
 .section {
     height: 100vh;
 }
+
+.UserUpdate {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.UserUpdate div {
+    float: left;
+    width: 50%;
+    padding: 15px;
+}
+
+.UserUpdate div:first-child {
+    width: 100%;
+}
+
+.UserUpdate span {
+    display: block;
+    float: left;
+    font-weight: bold;
+    margin-right: 50px;
+    width: 50px;
+    text-transform: uppercase;
+}
+
+.UserUpdate input {
+    float: left;
+    width: 100%;
+    padding: 10px;
+}

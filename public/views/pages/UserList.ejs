@@ -19,8 +19,8 @@
                 <td><%= (data[i].name) %> <%= (data[i].surname) %></td>
                 <td><%= (data[i].username) %></td>
                 <td><%= (data[i].password) %></td>
-                <td><a href="/userlist/delete/<%=data[i].username%>">Delete</a></td>
-                <td><a href="/userlist/update/<%=data[i].username%>">Update</a></td>
+                <td><a href="/userlist/delete/<%=data[i].id%>">Delete</a></td>
+                <td><a href="/userlist/update/<%=data[i].id%>">Update</a></td>
             </tr><%
         }%>
         </tbody>

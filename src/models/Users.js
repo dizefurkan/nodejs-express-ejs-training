@@ -7,8 +7,7 @@ var UserSchema = new Schema({
     surname: String,
     username: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     password: {
         type: String,

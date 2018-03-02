@@ -1,20 +1,23 @@
-<h4>Username: <%=data[0].username%></h4>
-<form action="/userlist/update" method="POST" >
-    <div>
-        <span>Username</span>
-        <input type="text" name="username" disabled readonly value="<%=data[0].username%>">
+<form action="/userlist/update" method="POST" class="UserUpdate clearfix">
+    <div class="clearfix">
+        <span>ID</span>
+        <input type="text" name="id" value="<%=data[0]._id%>" readonly>
     </div>
-    <div>
-        <span>Password</span>
-        <input type="text" name="password" value="<%=data[0].password%>">
-    </div>
-    <div>
+    <div class="clearfix">
         <span>Name</span>
         <input type="text" name="name" value="<%=data[0].name%>">
     </div>
-    <div>
+    <div class="clearfix">
         <span>Surname</span>
         <input type="text" name="surname" value="<%=data[0].surname%>">
+    </div>
+    <div class="clearfix">
+        <span>Username</span>
+        <input type="text" name="username" value="<%=data[0].username%>">
+    </div>
+    <div class="clearfix">
+        <span>Password</span>
+        <input type="text" name="password" value="<%=data[0].password%>">
     </div>
     <input type="submit" value="SAVE">
 </form>
