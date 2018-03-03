@@ -70,9 +70,17 @@ module.exports.postUpdate = function(req, res) {
     {upsert: true, new: true },
     function(err, data) {
         if (err) {
+            if (err.codeName === 'DuplicateKey') {
+                var errMessage = [
+                    err
+                ]
+                res.render('error', {
+                    error: errMessage
+                });
+            }
             console.log('postUpdate Error', err);
         } else {
-            console.log('Basarili');
+            console.log('Successful');
             res.redirect('/userlist');
         }
     })

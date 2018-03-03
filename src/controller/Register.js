@@ -17,7 +17,7 @@ module.exports.submit = function(req, res) {
         
         userRegister.save(function(err) {
             if (err) {
-                console.log('Hata var', err);
+                console.log('An error', err);
             }
             else {
                 console.log('Register Successful');

@@ -1,0 +1,8 @@
+<% 
+if (locals.error) {%>
+    <ul> <%
+        for (var i = 0; i < error.length; i++) {%>
+            <li><%= error[i]%></li><%
+        }%>
+    </ul><%
+}%>
