@@ -6,7 +6,7 @@ module.exports.index = function(req, res) {
     });
 };
 
-module.exports.submit = function(req, res) {
+module.exports.submit = function(req, res, next) {
     if (req.body) {
         var userRegister = new User({
             name: req.body.name,
@@ -17,10 +17,13 @@ module.exports.submit = function(req, res) {
         
         userRegister.save(function(err) {
             if (err) {
+                res.status(500).send('Register Duplicate Error');
                 console.log('An error', err);
             }
             else {
+                res.status(200).send("Register Successful");
                 console.log('Register Successful');
+                return next();
                 res.redirect('/userlist');
             }
         });

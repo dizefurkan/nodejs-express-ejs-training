@@ -71,16 +71,18 @@ module.exports.postUpdate = function(req, res) {
     function(err, data) {
         if (err) {
             if (err.codeName === 'DuplicateKey') {
-                var errMessage = [
-                    err
-                ]
-                res.render('error', {
-                    error: errMessage
-                });
+                // var errMessage = [
+                //     err
+                // ];
+                // res.render('error', {
+                //     error: errMessage
+                // });
+                res.status(500).send('postUpdate Error: ' + err.codeName);
             }
-            console.log('postUpdate Error', err);
+            console.log('postUpdate Error: ' + err.codeName);
         } else {
-            console.log('Successful');
+            res.status(200).send('Update is Successful');
+            console.log('Update is Successful');
             res.redirect('/userlist');
         }
     })
