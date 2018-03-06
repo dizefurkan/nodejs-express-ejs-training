@@ -1,4 +1,5 @@
 var User = require('../models/Users');
+var AddUser = require('../managers/User').addUser;
 
 module.exports.index = function(req, res) {
     res.render('Register', {
@@ -6,29 +7,18 @@ module.exports.index = function(req, res) {
     });
 };
 
-module.exports.submit = function(req, res, next) {
-    if (req.body) {
-        var userRegister = new User({
-            name: req.body.name,
-            surname: req.body.surname,
-            username: req.body.username,
-            password: req.body.password
-        });
-        
-        userRegister.save(function(err) {
-            if (err) {
-                res.status(500).send('Register Duplicate Error');
-                console.log('An error', err);
+module.exports.submit = function(req, res) {
+    if (req.body.username && req.body.password && req.body.name && req.body.surname ) {
+        var promise = AddUser(req.body);
+        promise.then(function (result) {
+            if (result.success) {
+                res.send(result);
+            } else {
+                res.send(result);
             }
-            else {
-                res.status(200).send("Register Successful");
-                console.log('Register Successful');
-                return next();
-                res.redirect('/userlist');
-            }
-        });
-    } else {
-        console.log('req.body is empty');
+        })
+    }
+    else {
         res.render('Register');
     }
 };

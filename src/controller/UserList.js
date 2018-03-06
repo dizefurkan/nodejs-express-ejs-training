@@ -1,23 +1,20 @@
 var Users = require('../models/Users');
+var getAllUsers = require('../managers/User').getAllUsers;
 
 module.exports.index = function(req, res) {
-    Users.find(function(err, data) {
-        if (err) {
-            console.log(err);
+    var promise = getAllUsers();
+    promise.then(function (result) {
+        if (!result.success) {
+            res.render('UserList', {
+                data: [],
+                err: result.message,
+                pageTitle: 'User List'
+            });
         } else {
-            if (data.length) {
-                res.render('UserList', {
-                    data: data,
-                    err: '',
-                    pageTitle: 'User List'
-                });
-            } else {
-                res.render('UserList', {
-                    data: [],
-                    error: 'No Record on MongoDB',
-                    pageTitle: 'User List'
-                });
-            }
+            res.render('UserList', {
+                data: result.data,
+                pageTitle: 'User List'
+            })
         }
     });
 };
@@ -71,12 +68,6 @@ module.exports.postUpdate = function(req, res) {
     function(err, data) {
         if (err) {
             if (err.codeName === 'DuplicateKey') {
-                // var errMessage = [
-                //     err
-                // ];
-                // res.render('error', {
-                //     error: errMessage
-                // });
                 res.status(500).send('postUpdate Error: ' + err.codeName);
             }
             console.log('postUpdate Error: ' + err.codeName);

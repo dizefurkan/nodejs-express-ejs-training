@@ -1,6 +1,6 @@
-<h1>Hello Team,</h1>
+<h1 class="textTransformUpperCase">Hello Team,</h1>
 <% if (data.length) {%>
-    <h2>Here is the UserList</h2>
+    <h3 class="textTransformUpperCase">Here is the UserList</h3>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -25,7 +25,7 @@
         }%>
         </tbody>
     </table><%
-    } else if (error) {%>
-        <h2 class="error"><%=error%></h2><%
+    } else if (locals.err) {%>
+        <h3 class="textTransformUpperCase"><%=err%></h3><%
     }
 %>
