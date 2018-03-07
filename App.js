@@ -18,18 +18,27 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './public/views/pages'));
 
 app.use(function(req, res, next) {
-    var token = req.headers['token'];
-    if (token) {
-        var decoded = jwt.verify(token, Config.secretKey, function(err, data) {
-            if (err) {
-                return res.send({ success: false, message: 'TOKEN ERROR' });
-            } else {
-                return res.send({ success: true, message: 'TOKEN TRUE' });
-                next();
-            }
-        });
+    var isLogin = req.path === '/login'
+
+    if (!isLogin) {
+        var token = req.headers['token'];
+        if (token) {
+            var decoded = jwt.verify(token, Config.secretKey, function(err, data) {
+                if (err) {
+                    res.send({ success: false, message: 'TOKEN ERROR' });
+                } else {
+                    next();
+                }
+            });
+        } else {
+            res.status(403).render('Forbidden', {
+                message: 'Please log in.',
+                link: '/login',
+                linkText: 'Go to Login Page'
+            });
+        }
     } else {
-        return res.send({ success: false, message: 'NO TOKEN' });
+        next();
     }
 });
 
