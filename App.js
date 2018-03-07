@@ -18,9 +18,11 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './public/views/pages'));
 
 app.use(function(req, res, next) {
-    var isLogin = req.path === '/login'
+    var isFreeZone = req.path === '/login' || req.path === '/register';
 
-    if (!isLogin) {
+    if (isFreeZone) {
+        next();
+    } else {
         var token = req.headers['token'];
         if (token) {
             var decoded = jwt.verify(token, Config.secretKey, function(err, data) {
@@ -37,8 +39,6 @@ app.use(function(req, res, next) {
                 linkText: 'Go to Login Page'
             });
         }
-    } else {
-        next();
     }
 });
 
