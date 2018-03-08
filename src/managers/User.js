@@ -2,27 +2,37 @@ var jwt = require('jsonwebtoken');
 var Users = require('../models/Users');
 var secretKey = require('../models/Config').secretKey;
 
-module.exports.getUserByNameAndPassword = function(user) {
+module.exports.getUserByNameAndPassword = function(user, haveToken) {
     return Users.findOne({
         username: user.username
     }).then(function (result) {
+        return { result }
         if (!result) {
             return { 
                 success: false,
-                message: 'User not found by this name'
-            }
+                message: 'User not found by this name',
+                where: '1'
+            };
         } else {
             if ( user.password != result.password ) {
                 return {
                     success: false,
-                    message: 'Wrong Password'
-                }
+                    message: 'Wrong Password',
+                    where: '2'
+                };
             } else {
-                var token = jwt.sign({result}, secretKey);
-                return {
-                    success: true,
-                    message: 'User Found',
-                    token: token
+                if (haveToken) {
+                    return {
+                        success: true,
+                        message: 'User Found'
+                    };
+                } else {
+                    var token = jwt.sign({result}, secretKey);
+                    return {
+                        success: true,
+                        message: 'User Found',
+                        token: token
+                    };
                 }
             }
         }

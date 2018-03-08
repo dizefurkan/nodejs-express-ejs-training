@@ -9,6 +9,7 @@ var jwt = require('jsonwebtoken');
 var Router = require('./src/router/Router');
 var Database = require('./src/models/Database');
 var Config = require('./src/models/Config');
+var getUserByNameAndPassword = require('./src/managers/User').getUserByNameAndPassword;
 
 var app = express();
 app.use(bodyParser.json());
@@ -29,7 +30,17 @@ app.use(function(req, res, next) {
                 if (err) {
                     res.send({ success: false, message: 'TOKEN ERROR' });
                 } else {
-                    next();
+                    var haveToken = true;
+                    var promise = getUserByNameAndPassword(data, haveToken);
+                    console.log(data);
+                    promise.then(function (response) {
+                        console.log(response);
+                        if (response.success) {
+                            next();
+                        } else {
+                            res.send({ success: false, message: 'Token - User Relation Fail'});
+                        }
+                    })
                 }
             });
         } else {

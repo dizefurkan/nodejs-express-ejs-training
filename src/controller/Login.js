@@ -14,12 +14,8 @@ module.exports.submit = function(req, res) {
             password: password
         };
         var promise = getUserByNameAndPassword(user);
-        promise.then(function(result) {
-            if (result.success) {
-                res.send({ success: true, token: result.token });
-            } else {
-                res.send({ success: result.success, message: result.message });
-            }
+        promise.then(function (result) {
+            res.send({ result });
         })
     } else {
         res.send('Username and password is required!');
