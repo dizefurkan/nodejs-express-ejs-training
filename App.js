@@ -9,7 +9,7 @@ var jwt = require('jsonwebtoken');
 var Router = require('./src/router/Router');
 var Database = require('./src/models/Database');
 var Config = require('./src/models/Config');
-var getUserByNameAndPassword = require('./src/managers/User').getUserByNameAndPassword;
+var getUsernameAndPassword = require('./src/managers/User').getUsernameAndPassword;
 
 var app = express();
 app.use(bodyParser.json());
@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
                     res.send({ success: false, message: 'TOKEN ERROR' });
                 } else {
                     var haveToken = true;
-                    var promise = getUserByNameAndPassword(data, haveToken);
+                    var promise = getUsernameAndPassword(data, haveToken);
                     console.log(data);
                     promise.then(function (response) {
                         console.log(response);
